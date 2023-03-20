@@ -3,6 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Portfolio;
+use App\Models\Symbol;
+use App\Models\SymbolsPrice;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $symbols = Symbol::factory(10)->create();
+        $users = User::factory(5)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        foreach ($symbols as $symbol) {
+            SymbolsPrice::factory(100)->for($symbol)->create();
+
+            foreach ($users as $user) {
+                Portfolio::factory(3)->for($symbol)->for($user)->create();
+            }
+        }
     }
 }
