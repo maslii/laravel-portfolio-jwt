@@ -17,7 +17,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $symbols = Symbol::factory(10)->create();
-        $users = User::factory(5)->create();
+        $users = User::factory(2)->create();
+
+        $users->push(User::factory([
+            'name' => fake()->name(),
+            'email' => 'admin@localhost.local',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+        ])->create());
 
         foreach ($symbols as $symbol) {
             SymbolsPrice::factory(100)->for($symbol)->create();
