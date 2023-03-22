@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\User;
+use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -26,21 +24,14 @@ class AuthController extends Controller
         ], 401);
     }
 
-    public function register(RegisterRequest $request): JsonResponse
+    public function register(RegisterRequest $request, AuthService $service): JsonResponse
     {
-        $data = $request->validated();
-
-        if (Arr::exists($data, 'password')) {
-            $data['password'] = Hash::make($data['password']);
-        }
-
-        $user = User::factory()->create($data);
-        $token = auth()->login($user);
+        $token = $service->register($request);
 
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-        ]);
+        ], 201);
     }
 
     public function logout(): Response
