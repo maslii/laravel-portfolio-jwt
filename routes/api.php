@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +22,13 @@ Route::prefix('auth')->group(function () {
     Route::middleware('auth:api')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::post('refresh', [AuthController::class, 'refresh']);
+    });
+});
+
+Route::prefix('portfolios')->group(function () {
+    Route::middleware('auth:api')->group(function () {
+        Route::get('/', [PortfolioController::class, 'show']);
+        Route::post('/', [PortfolioController::class, 'store']);
+        Route::patch('/', [PortfolioController::class, 'update']);
     });
 });
