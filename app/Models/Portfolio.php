@@ -13,6 +13,10 @@ class Portfolio extends Model
 
     protected $keyType = 'string';
 
+    protected $fillable = [
+        'shares'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

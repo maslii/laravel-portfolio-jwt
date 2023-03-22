@@ -8,6 +8,7 @@ use App\Models\Symbol;
 use App\Models\SymbolsPrice;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,14 +23,14 @@ class DatabaseSeeder extends Seeder
         $users->push(User::factory([
             'name' => fake()->name(),
             'email' => 'admin@localhost.local',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'password' => Hash::make('password')
         ])->create());
 
         foreach ($symbols as $symbol) {
-            SymbolsPrice::factory(100)->for($symbol)->create();
+            SymbolsPrice::factory(10)->for($symbol)->create();
 
             foreach ($users as $user) {
-                Portfolio::factory(3)->for($symbol)->for($user)->create();
+                Portfolio::factory(1)->for($symbol)->for($user)->create();
             }
         }
     }

@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->ulid('id')->primary();
             $table->foreignUlid('symbol_id')->constrained();
             $table->decimal('price', 20, 5)->nullable('false');
-            $table->dateTime('date')->nullable('false')->unique();
+            $table->date('date')->nullable('false');
         });
     }
 
