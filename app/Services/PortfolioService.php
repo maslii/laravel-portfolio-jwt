@@ -66,6 +66,9 @@ class PortfolioService
                 ]);
             }
 
+            // TODO API for creating and updating symbol prices
+            // Symbol and symbol prices must exist in database
+
             $portfolios->push(Portfolio::factory()->create([
                 'shares' => $portfolio['shares'],
                 'user_id' => auth()->user()->id,
