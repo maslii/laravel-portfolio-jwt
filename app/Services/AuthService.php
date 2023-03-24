@@ -31,7 +31,7 @@ class AuthService
                 Portfolio::factory()->create([
                     'shares' => $portfolio['shares'],
                     'user_id' => $user->id,
-                    'symbol_id' => Symbol::whereName($portfolio['symbol'])->first()->id
+                    'symbol_id' => Symbol::whereName($portfolio['symbol'])->first()->id,
                 ]);
             }
         }

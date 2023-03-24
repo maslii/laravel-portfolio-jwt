@@ -9,7 +9,7 @@ class SymbolFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => strtoupper(fake()->lexify())
+            'name' => strtoupper(fake()->lexify()),
         ];
     }
 }

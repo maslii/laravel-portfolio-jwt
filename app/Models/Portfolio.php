@@ -14,7 +14,7 @@ class Portfolio extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'shares'
+        'shares',
     ];
 
     public function user(): BelongsTo

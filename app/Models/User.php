@@ -47,7 +47,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getJWTIdentifier()
     {
@@ -55,7 +55,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getJWTCustomClaims(): array
     {

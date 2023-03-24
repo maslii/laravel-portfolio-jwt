@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $users->push(User::factory([
             'name' => fake()->name(),
             'email' => 'admin@localhost.local',
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
         ])->create());
 
         foreach ($symbols as $symbol) {

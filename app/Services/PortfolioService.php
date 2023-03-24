@@ -6,7 +6,6 @@ use App\Models\Portfolio;
 use App\Models\Symbol;
 use App\Models\SymbolsPrice;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 
@@ -62,7 +61,7 @@ class PortfolioService
 
             if (Portfolio::where('user_id', auth()->user()->id)->where('symbol_id', $symbolId)->exists()) {
                 throw ValidationException::withMessages([
-                    'symbol' => 'Symbol is already present in portfolio!'
+                    'symbol' => 'Symbol is already present in portfolio!',
                 ]);
             }
 
@@ -72,7 +71,7 @@ class PortfolioService
             $portfolios->push(Portfolio::factory()->create([
                 'shares' => $portfolio['shares'],
                 'user_id' => auth()->user()->id,
-                'symbol_id' => Symbol::whereName($portfolio['symbol'])->first()->id
+                'symbol_id' => Symbol::whereName($portfolio['symbol'])->first()->id,
             ]));
         }
 

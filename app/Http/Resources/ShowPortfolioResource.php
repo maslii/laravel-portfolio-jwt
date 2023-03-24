@@ -17,7 +17,7 @@ class ShowPortfolioResource extends JsonResource
             'change' => [
                 'dollar' => $this->formatNumber($this->change['dollar']),
                 'percentage' => $this->formatNumber($this->change['percentage']),
-            ]
+            ],
         ];
     }
 
